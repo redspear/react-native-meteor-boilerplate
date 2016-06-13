@@ -1,3 +1,9 @@
+/*
+This is the pure (sometimes called dumb) part of the component that displays stuff
+based on the props passed to it.
+It's counterpart the SignInContainer is the smart part that handles most of the logic and data sync.
+*/
+
 import React from 'react';
 import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
@@ -6,8 +12,21 @@ import GenericTextInput, { InputWrapper } from '../../components/GenericTextInpu
 import { COLORS } from '../../styles';
 import Logo from '../../images/rn-logo.png';
 
+// Get the dimensions of the window. Dimensions is provided by 'react-native'
 const window = Dimensions.get('window');
 
+/*
+Styles are like css files.
+Property names are similar but in camel case.
+So it's backgroundColor instead of background-color in css.
+Not all css properties are available. We only have a subset of css properties.
+
+FLEX BOX
+The flex property might be new to you.
+It lets us position items on a page.
+It means we don't (or rarely?) use floats.
+Check out the flex box webpage for more info.
+*/
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -50,8 +69,17 @@ const styles = StyleSheet.create({
   },
 });
 
+/*
+Define a SignIn component and pass it a props object.
+The props object is defined with SignIn.propTypes near the end of the file.
+This defines what props can be used and are expected by the SignIn component.
+*/
 const SignIn = (props) => {
-  const { updateState, signIn, createAccount, error, confirmPasswordVisible } = props;
+  /*
+  Deconstruct the props object into it's individual properties.
+  All of these properties can now be called by name as const's
+  */
+  const { updateState, signIn, error, confirmPasswordVisible } = props;
 
   return (
     <View style={styles.container}>
@@ -92,7 +120,6 @@ const SignIn = (props) => {
 
       <View style={styles.buttons}>
         <Button text="Sign In" onPress={signIn} />
-        <Button text="Create Account" onPress={createAccount} />
       </View>
 
       <KeyboardSpacer />
@@ -100,12 +127,14 @@ const SignIn = (props) => {
   );
 };
 
+// This defines what props can be used and are expected by the SignIn component.
 SignIn.propTypes = {
   updateState: React.PropTypes.func,
   signIn: React.PropTypes.func,
-  createAccount: React.PropTypes.func,
   error: React.PropTypes.string,
   confirmPasswordVisible: React.PropTypes.bool,
 };
 
 export default SignIn;
+
+// Now go to SignInContainer.js

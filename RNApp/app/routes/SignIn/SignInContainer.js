@@ -1,3 +1,8 @@
+/*
+The smart part of the dumb/smart component. SignIn.js is the other part.
+This wraps (or contains) the dumb component to separate the messy part of the implementation.
+The dumb part can be re-used in other places.
+*/
 import React, { Component } from 'react';
 import { LayoutAnimation } from 'react-native';
 import Meteor, { Accounts } from 'react-native-meteor';
@@ -79,3 +84,5 @@ class SignInContainer extends Component {
 }
 
 export default SignInContainer;
+
+// Now go to layouts/LoggedIn.js

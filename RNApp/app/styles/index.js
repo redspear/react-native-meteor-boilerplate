@@ -1,3 +1,6 @@
+/*
+A good way to keep colors constant. Also one location to change them.
+*/
 export const COLORS = {
   background: '#F5F2F9',
   errorText: '#FA3256',

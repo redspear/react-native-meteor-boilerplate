@@ -1,8 +1,14 @@
+/*
+THe layout used when a user is logged in.
+*/
+
 import React from 'react';
 import { Image, StyleSheet } from 'react-native';
 import TabNavigator from 'react-native-tab-navigator';
+/*
 import { Icon as ProfileIcon } from '../routes/Profile';
 import { Icon as HomeIcon } from '../routes/Home';
+*/
 import ExNavigator from '@exponent/react-native-navigator';
 import Routes from '../routes';
 
@@ -56,11 +62,18 @@ class LoggedInLayout extends React.Component {
   }
 
   render() {
+    const initialRoute = Routes.getHomeRoute();
+    const sceneStyle = [];
+    if (initialRoute.showNavigationBar !== false) {
+      sceneStyle.push({ paddingTop: 64 });
+    }
     return (
-      <TabNavigator>
-        {this.renderTabItem('Home', Routes.getHomeRoute(), HomeIcon)}
-        {this.renderTabItem('Profile', Routes.getProfileRoute(), ProfileIcon)}
-      </TabNavigator>
+      <ExNavigator
+        initialRoute={initialRoute}
+        style={{ flex: 1 }}
+        sceneStyle={sceneStyle}
+        showNavigationBar={initialRoute.showNavigationBar}
+      />
     );
   }
 }
